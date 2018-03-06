@@ -36,6 +36,8 @@ kind: Service
 metadata:
   name: one-eyed-minion-entrypoint
   namespace: default
+  labels:
+    type: minion
 spec:
   selector:
     serviceType: one-eyed-minion
@@ -82,6 +84,8 @@ kind: Service
 metadata:
   name: two-eyed-minion-entrypoint
   namespace: default
+  labels:
+      type: minion
 spec:
   selector:
     serviceType: two-eyed-minion
@@ -110,6 +114,7 @@ spec:
       name: sad-minion
       labels:
         serviceType: sad-minion
+        type: minion
     spec:
       containers:
         - name: sad-minion
@@ -128,6 +133,8 @@ kind: Service
 metadata:
   name: sad-minion-entrypoint
   namespace: default
+  labels:
+      type: minion
 spec:
   selector:
     serviceType: sad-minion
@@ -174,6 +181,8 @@ kind: Service
 metadata:
   name: happy-minion-entrypoint
   namespace: default
+  labels:
+      type: worker
 spec:
   selector:
     serviceType: happy-minion
