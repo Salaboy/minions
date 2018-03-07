@@ -6,10 +6,10 @@
   <groupId>org.minions</groupId>
   <artifactId>minions-parent</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
 
   <name>minions</name>
-  <description>Minions Docker/Kubernetes projects for Spring Boot & Spring Cloud</description>
+  <description>Minions Docker/Kubernetes projects for Spring Boot and Spring Cloud</description>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
