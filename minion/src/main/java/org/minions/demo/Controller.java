@@ -1,17 +1,15 @@
 package org.minions.demo;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.netflix.feign.FeignClientsConfiguration;
-import org.springframework.context.annotation.Import;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -27,11 +25,11 @@ public class Controller {
     @Value("${spring.application.name}")
     private String appName;
 
-    public Controller(MinionsLibrary minionsLibrary){
-        this.minionsLibrary=minionsLibrary;
+    public Controller(MinionsLibrary minionsLibrary) {
+        this.minionsLibrary = minionsLibrary;
     }
 
-    @RequestMapping( method=GET)
+    @RequestMapping(method = GET)
     @ResponseBody
     public String minion() throws UnknownHostException {
 
@@ -43,8 +41,5 @@ public class Controller {
         stringBuilder.append(minionsLibrary.getMinion(appName));
         return stringBuilder.toString();
     }
-    @RequestMapping( method=POST, path = "/work/{minion}")
-    public void work(@PathVariable("minion") String minion){
-        log.info("I'm doing some work for: "+ minion);
-    }
+
 }

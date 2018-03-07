@@ -5,8 +5,8 @@ import feign.RequestLine;
 import org.springframework.cloud.netflix.feign.FeignClient;
 
 @FeignClient("worker")
-public interface Worker {
+public interface Boss {
 
-    @RequestLine("POST /work/{minion}")
-    public void work(@Param("minion") String minion);
+    @RequestLine("POST /mission/{minion}")
+    public void requestMission(@Param("minion") String minion);
 }

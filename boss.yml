@@ -1,0 +1,48 @@
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: boss
+  labels:
+    serviceType: boss
+spec:
+  replicas: 1
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      name: boss
+      labels:
+        serviceType: boss
+    spec:
+      containers:
+        - name: boss
+          image: boss:latest
+          imagePullPolicy: Never
+          ports:
+          - containerPort: 8080
+          env:
+          - name: JAVA_OPTS
+            value: -Xmx64m -Xms64m
+          - name: SPRING_APPLICATION_NAME
+            value: "boss"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: boss-entrypoint
+  namespace: default
+  labels:
+    type: boss
+spec:
+  selector:
+    serviceType: boss
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30090
+  type: NodePort

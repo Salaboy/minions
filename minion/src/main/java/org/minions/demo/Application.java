@@ -41,6 +41,7 @@ public class Application implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         log.info("Minion Started! ");
+
     }
 
     @Scheduled(fixedRate = 2000)
@@ -55,12 +56,12 @@ public class Application implements CommandLineRunner {
                 Map<String, String> metadata = si.getMetadata();
                 String type = metadata.get("type");
                 log.info("Service Type: " + type);
-                if ("worker".equals(type)) {
+                if ("boss".equals(type)) {
                     String url = "http://" + si.getServiceId() + ":" + si.getPort();
                     log.info("POST to Service @: " + url + " -> from: " + appName);
-                    Worker worker = Feign.builder().target(Worker.class,
-                                                           url);
-                    worker.work(appName);
+                    Boss boss = Feign.builder().target(Boss.class,
+                                                       url);
+                    boss.requestMission(appName);
                 }
             }
         }

@@ -182,7 +182,7 @@ metadata:
   name: happy-minion-entrypoint
   namespace: default
   labels:
-      type: worker
+      type: minion
 spec:
   selector:
     serviceType: happy-minion
