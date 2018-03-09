@@ -1,8 +1,8 @@
-# Minions for minikube
+# Minions for minikube using Spring Cloud Kubernetes 2.x
 
 ## Aims
 
-To make an army of minions in minikube.
+To make an army of minions in minikube and to provide a Boss Service that minions can discover and contact.
 
 ## Pre-requisites
 
@@ -14,10 +14,19 @@ Start minikube:
  
 `minikube start --memory 4000 --cpus 3`
 
-Build minion image for minikube - from this directory run
+Build all projects with:
+`mvn clean install`
+Build minion image for minikube: 
 
 `eval $(minikube docker-env)` <br/>
+`cd minion`
 `docker build . -t minion`
+
+Build boss image: 
+
+`cd boss`
+`docker build . -t boss`
+
 
 Deploy the army
  
@@ -33,6 +42,12 @@ To see the troop types:
 To see the whole army 
 
 `kubectl get pods`
+
+To create the boss run:
+`kubectl create -f boss.yml`
+
+Now you can see in each minion replica output that the minion found a Boss and inside the boss output you can see
+all the minions request comming from each minion in the army. You can kill the boss, and the minions will not fail.
 
 ## To Create More Troops
 
