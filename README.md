@@ -1,5 +1,7 @@
 # Minions for minikube using Spring Cloud Kubernetes 2.x
 
+This project is relying in the following PR: https://github.com/spring-cloud-incubator/spring-cloud-kubernetes/pull/152
+
 ## Aims
 
 To make an army of minions in minikube and to provide a Boss Service that minions can discover and contact.
